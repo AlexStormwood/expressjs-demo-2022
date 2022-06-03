@@ -49,6 +49,11 @@ app.get('/', (req, res) => {
 
 });
 
+
+// Configure any assembled routes and attach them to the server instance.
+const routesDice = require('./routes/dice');
+app.use('/dice', routesDice);
+
 // Notice that we're not calling app.listen() anywhere in here.
 // This file contains just the setup/config of the server,
 // so that the server can be used more-simply for things like Jest testing.
