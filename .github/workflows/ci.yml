@@ -1,0 +1,27 @@
+name: Automated Server Testing
+
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run_server_tests:
+    name: Run server tests 
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Configure Node.js '16.x'
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+    - run: npm install
+
+    - name: Run tests
+      run: npm run test-ci
+      env:
+        CI: true
+    
