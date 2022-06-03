@@ -24,4 +24,10 @@ jobs:
       run: npm run test-ci
       env:
         CI: true
+
+  call_deploy_workflow:
+    needs: run_server_tests
+    name: Deploy
+    uses: ./.github/workflows/cd.yml
+    secrets: inherit
     

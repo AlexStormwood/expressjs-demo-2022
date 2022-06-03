@@ -2,7 +2,7 @@ const request = require('supertest');
 const {app} = require('../src/server');
 
 
-describe('Dice route...', () => {
+describe.skip('Dice route...', () => {
     it('rolls a D6 by default.', async () => {
         const response = await request(app).get('/dice');
         expect(response.statusCode).toEqual(200);
