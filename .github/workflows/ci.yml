@@ -26,7 +26,7 @@ jobs:
         CI: true
 
   call_deploy_workflow:
-    if: github.event.push == true
+    if: github.event_name == 'push'
     needs: run_server_tests
     name: Deploy
     uses: ./.github/workflows/cd.yml
