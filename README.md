@@ -17,11 +17,11 @@ In a typical ExpressJS app or tutorial, you've probably seen structures like thi
 
 ```mermaid
 graph TD;
-	index.js --> credential files;
-	index.js --> route files;
-	route files --> model files;
-	route files --> function files (eg. auth, validate);
-	test files --> index.js
+	A[index.js] --> B[credential files];
+	A[index.js] --> C[route files];
+	C[route files] --> D[model files];
+	C[route files] --> E[functionality];
+	F[test files] --> A[index.js]
 ```
 
 While that's good, that layout is sometimes not great for CICD and other automated things. An `index.js` file in this structure has server configuration _and_ server boot-up contained in the same file -- that "app.listen" that you've probably written once per project and forgotten about. That's not great for anything that needs to import that server _and_ control when that server starts and stops, such as Jest. 
@@ -30,11 +30,12 @@ Instead, we need to split the `index.js` into multiple parts.
 
 ```mermaid
 graph TD;
-	index.js (server boot) --> server config;
-	server config --> route files;
-	route files --> model files;
-	route files --> function files (eg. auth, validate);
-	test files --> server config
+	G[server boot] --> A[server config]
+	A[server config] --> B[credential files];
+	A[server config] --> C[route files];
+	C[route files] --> D[model files];
+	C[route files] --> E[functionality];
+	F[test files] --> A[server config]
 ```
 
 Basically, the `index.js` file should only start the server. It should not contain any configuration or options or routing or anything else - just import a configured server and start it. 
