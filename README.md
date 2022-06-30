@@ -113,6 +113,10 @@ The testing step installs the required NPM packages and runs the project's tests
 
 ```
 
+If tests fail, you can dig through your GitHub repo's Actions and find lovely "Annotations" detailing the failing tests.
+
+![A summary page for a failed Action run.](./documentation/images/FailingTestAnnotationScreen.png)
+
 When tests pass, the deployment step triggers.
 
 ```yml
